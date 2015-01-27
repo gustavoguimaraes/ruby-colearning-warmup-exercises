@@ -1,5 +1,5 @@
 # Go to your ruby colearning warmup exercises folder
-# Once there create a folder name warmup-003
+# Once there create a folder and name it warmup-003
 # Inside this folder create two files: one titled warmup-003.rb and the other
 # warmup-003_spec.rb
 
