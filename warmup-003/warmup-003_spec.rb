@@ -13,7 +13,7 @@ describe "#first_even_number" do  # method for debugging
     expect(first_even_number([3, 5, 15, 16, 23, 42])).to eq(16)
   end
   it "should return nil" do
-    expect(first_even_number([3, 5 ,10, 15, 23, ])).to eq(nil)
+    expect(first_even_number([3, 5 ,7 , 15, 23, ])).to eq(nil)
   end
 
 end
