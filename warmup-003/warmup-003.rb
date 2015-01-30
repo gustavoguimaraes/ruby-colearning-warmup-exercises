@@ -20,5 +20,5 @@ def first_even_number dummy_array
       end   
      end
   nil
-  end
+end
 
