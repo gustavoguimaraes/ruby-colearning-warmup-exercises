@@ -1,4 +1,4 @@
-# Go to your ruby colearning warmup exercises folder
+#, Go to your ruby colearning warmup exercises folder
 # Once there create a folder name warmup-003
 # Inside this folder create two files: one titled warmup-003.rb and the other
 # warmup-003_spec.rb
@@ -13,6 +13,7 @@
 
 def first_even_number dummy_array
   dummy_array.each do |i|
+    if 
     test = i.even?
       if test == true
         return i 
