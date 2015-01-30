@@ -11,15 +11,20 @@
 
 # Push your code to Github
 
+require_relative 'float_method_netznarkose.rb'
+
+
 def first_even_number dummy_array
   dummy_array.each do |i|
-    if 
-    test = i.even?
-      if test == true
-        return i 
-#        break
-      end   
-     end
+    test_float = i.float?
+    test_even  = i.even?
+    if test_float == true
+      return  nil
+    end
+    if test_even  == true
+      return i 
+    end   
+  end
   nil
 end
 
