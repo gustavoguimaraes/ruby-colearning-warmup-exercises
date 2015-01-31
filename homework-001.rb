@@ -4,30 +4,26 @@
 members_array = []
 
 # Methoden
-def register_name
-   puts "Add a the person's first name"
-   @var_vorname = gets.chomp
+def register data
+case data 
+when "first_name"
+puts "Add the person's first name"
+when "family_name"
+puts "Add the person's family name"
+when "github_user"
+puts "Add the person's github username"
+else
+puts "whatever"
 end
-def register_name
-   puts "Add a the person's first name"
-   @var_vorname = gets.chomp
+return gets.chomp
 end
-def register_family_name
-   puts "Add the person's family name"
-   @var_nachname = gets.chomp
-end
-def register_github_name
-   puts "Add this person's Github username"
-   @var_github = gets.chomp
-end
-def store_infos
-   method_array = []
-   method_array.push "#{@var_vorname} #{@var_nachname} #{@var_github}"
-   @output = method_array 
-end
+
 def print_infos
+  members_array = []
+  @var_vorname = members_array.first
+  @var_nachname= members_array[1]
+  @var_github = members_array[2]
    puts "#{@var_vorname} #{@var_nachname} with github username #{@var_github} was added"
-   puts
 end
 
 
@@ -41,12 +37,12 @@ puts "Press 2 to see a list of all Members"
 puts "Press 3 to get out of here"
 puts "Press 4 to delete current Group-List"
 var_menue = gets.chomp.to_i
- if var_menue == 1
-   register_name
-   register_family_name
-   register_github_name
-   members_array.concat store_infos 
-   print_infos 
+ if var_menue == 1 
+   members_array.push "#{register('first_name')} #{register('family_name')} #{register('github_user')}"
+   var_vorname = members_array[0]
+   var_nachname = members_array[1]
+   var_github = members_array[2]
+   puts "#{var_vorname} #{var_nachname} with github username #{var_github} was added"
   elsif var_menue == 2
    test = members_array.empty?
    if test == true
