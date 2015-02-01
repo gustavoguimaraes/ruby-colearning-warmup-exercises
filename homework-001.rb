@@ -56,7 +56,7 @@ var_menue = gets.chomp.to_i
    members_current.push "#{create_register('family_name')}"
    members_current.push "#{create_register('github_user')}"
    puts "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
-   members_store.concat members_current
+   members_store.push "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
  elsif var_menue == 2
    show_register members_store
  elsif var_menue == 3
