@@ -1,10 +1,11 @@
 # homework-001.rb
 
 # Arrays
-members_array = []
+members_current = []
+members_store = []
 
 # Methoden
-def register data
+def create_register data
   case data 
   when "first_name"
     puts "Add the person's first name"
@@ -15,8 +16,31 @@ def register data
   end
   return gets.chomp
 end
+def show_register data 
+   test = data.empty?
+   if test == true
+     puts "sorry, no Members registered yet"
+   else
+    puts
+    puts "Registered members are:"
+    puts data 
+    puts
+   end
+end
+def exit_program
+   puts
+   puts "Exiting the program"
+end
+def delete_register data
+    data.clear  
+    puts
+    puts "current Group-List was deleted"
+    puts
+    puts
+end
 
-puts
+# let the app beginn!
+
 puts "Welcome to the Ruby-Colearning Group"
 puts
 begin
@@ -27,30 +51,19 @@ puts "Press 3 to get out of here"
 puts "Press 4 to delete current Group-List"
 var_menue = gets.chomp.to_i
  if var_menue == 1 
-   members_array.push "#{register('first_name')} #{register('family_name')} #{register('github_user')}"
-   puts "#{members_array.first} #{members_array[1]} with github username #{members_array[2]} was added"
+   members_current = []
+   members_current.push "#{create_register('first_name')}"
+   members_current.push "#{create_register('family_name')}"
+   members_current.push "#{create_register('github_user')}"
+   puts "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
+   members_store.concat members_current
  elsif var_menue == 2
-   test = members_array.empty?
-   if test == true
-     puts "sorry, no Members registered yet"
-   else
-    puts
-    puts "Registered members are:"
-    puts members_array
-    puts
-   end
-
+   show_register members_store
  elsif var_menue == 3
-   puts
-   puts "Exiting the program"
- 
+    exit_program 
  elsif var_menue == 4
-   members_array.clear  
-   puts
-   puts "current Group-List was deleted"
-   puts
-  puts
- else
+   delete_register members_store
+   else
    puts
    puts "Incorrect Command"
    puts

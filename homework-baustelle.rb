@@ -1,5 +1,5 @@
 members_array = Array.new 
-def register data
+def create_register data
 case data 
 when "first_name"
 puts "Add the person's first name"
