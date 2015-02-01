@@ -5,27 +5,16 @@ members_array = []
 
 # Methoden
 def register data
-case data 
-when "first_name"
-puts "Add the person's first name"
-when "family_name"
-puts "Add the person's family name"
-when "github_user"
-puts "Add the person's github username"
-else
-puts "whatever"
+  case data 
+  when "first_name"
+    puts "Add the person's first name"
+  when "family_name"
+    puts "Add the person's family name"
+  when "github_user"
+    puts "Add the person's github username"
+  end
+  return gets.chomp
 end
-return gets.chomp
-end
-
-def print_infos
-  members_array = []
-  @var_vorname = members_array.first
-  @var_nachname= members_array[1]
-  @var_github = members_array[2]
-   puts "#{@var_vorname} #{@var_nachname} with github username #{@var_github} was added"
-end
-
 
 puts
 puts "Welcome to the Ruby-Colearning Group"
@@ -39,11 +28,8 @@ puts "Press 4 to delete current Group-List"
 var_menue = gets.chomp.to_i
  if var_menue == 1 
    members_array.push "#{register('first_name')} #{register('family_name')} #{register('github_user')}"
-   var_vorname = members_array[0]
-   var_nachname = members_array[1]
-   var_github = members_array[2]
-   puts "#{var_vorname} #{var_nachname} with github username #{var_github} was added"
-  elsif var_menue == 2
+   puts "#{members_array.first} #{members_array[1]} with github username #{members_array[2]} was added"
+ elsif var_menue == 2
    test = members_array.empty?
    if test == true
      puts "sorry, no Members registered yet"
