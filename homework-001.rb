@@ -52,9 +52,7 @@ puts "Press 4 to delete current Group-List"
 var_menue = gets.chomp.to_i
  if var_menue == 1 
    members_current = []
-   members_current.push "#{create_register('first_name')}"
-   members_current.push "#{create_register('family_name')}"
-   members_current.push "#{create_register('github_user')}"
+   members_current = "#{create_register('first_name')} #{create_register('family_name')} #{create_register('github_user')}".split
    puts "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
    members_store.push "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
  elsif var_menue == 2
