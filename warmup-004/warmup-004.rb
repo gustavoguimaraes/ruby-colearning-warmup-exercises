@@ -4,7 +4,7 @@
 # warmup-004_spec.rb
 
 # To get yourself into the test-first habit, first copy the tests in
-# https://github.com/gustavoguimaraes/ruby-colearning-warmup-exercises/blob/master/warmup-004/warm-004_spec.rb
+# https://github.com/gustavoguimaraes/ruby-colearning-warmup-exercises/blob/master/warmup-004/warmup-004_spec.rb
 # and add to your warm-004_spec.rb. Write an additional test to it.
 # You can use the test that is already written as a reference.
 
