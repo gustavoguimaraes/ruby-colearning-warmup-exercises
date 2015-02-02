@@ -17,13 +17,11 @@ def create_register data
   return gets.chomp
 end
 def show_register data 
-   test = data.empty?
-   if test == true
+   if data.empty? 
      puts "sorry, no Members registered yet"
    else
-    puts
-    puts "Registered members are:"
-    puts data 
+    puts "\nRegistered members are:"
+    puts data
     puts
    end
 end
@@ -33,18 +31,14 @@ def exit_program
 end
 def delete_register data
     data.clear  
-    puts
-    puts "current Group-List was deleted"
-    puts
-    puts
+    puts "\ncurrent Group-List was deleted \n\n"
 end
 
 # let the app beginn!
 
-puts "Welcome to the Ruby-Colearning Group"
-puts
+puts "\nWelcome to the Ruby-Colearning Group"
 begin
-puts "What would you like to do?"
+puts "\nWhat would you like to do?"
 puts "Press 1 for registering a Member"
 puts "Press 2 to see a list of all Members"
 puts "Press 3 to get out of here"
@@ -53,8 +47,8 @@ var_menue = gets.chomp.to_i
  if var_menue == 1 
    members_current = []
    members_current = "#{create_register('first_name')} #{create_register('family_name')} #{create_register('github_user')}".split
-   puts "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
-   members_store.push "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
+   puts "\n#{members_current[0]} #{members_current[1]} with github username #{members_current[2]} was added"
+   members_store.push "#{members_current[0]} #{members_current[1]} with github username #{members_current[2]}"
  elsif var_menue == 2
    show_register members_store
  elsif var_menue == 3
