@@ -14,19 +14,14 @@
 #Push your code to github.
 
 def count_words data
-  data.split.each {|i| h = (i.is_a? Integer)
-    if h == true
-      return nil
-    end
-  }
-  data.split.size
-end
-def test_integer data
   @output = ""
   data.split.each { |i|
     if i.count("0-9") > 0
-      @output = "sorry keine integers erlaubt"
+      return @output = "warning: there is a integer in your string"
+    else
+      @output = data.split.size
     end
   }
-  puts @output  
-end 
+  return @output  
+end
+
