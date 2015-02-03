@@ -21,4 +21,12 @@ def count_words data
   }
   data.split.size
 end
-
+def test_integer data
+  @output = ""
+  data.split.each { |i|
+    if i.count("0-9") > 0
+      @output = "sorry keine integers erlaubt"
+    end
+  }
+  puts @output  
+end 
