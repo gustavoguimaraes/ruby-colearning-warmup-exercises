@@ -38,9 +38,15 @@ class Kitchen
   end
 
   def remove_first_and_last_elements
-    var = @items
-    var.pop
-    var.shift
-    @items = var
+    @items.pop
+    @items.shift
   end
+
+  def make_mini_arrays data
+    data.each do |i| 
+      h = i.split 
+     @items.push h
+    end
+    @itmes
+  end 
 end
