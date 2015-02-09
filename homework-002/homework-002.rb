@@ -37,10 +37,10 @@ class Kitchen
   end 
 
   # Test 6
-  def remove_if_more_than_three_letters data
+  def remove_if_more_than_three_letters data # just gives last iteration back 
    data.each do |i|
       if i.length < 4
-        @items = @items.push i
+        @items = @items.push i # redefining @items
       end
     end 
    @items
