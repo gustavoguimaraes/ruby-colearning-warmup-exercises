@@ -31,25 +31,26 @@ class Kitchen
     end 
   end  
   
+  # Test 5
+
+  def make_mini_arrays data
+    @items = data.map! {|var| Array(var)}
+  end 
+  # works also: 
   ## Test 5
   #def make_mini_arrays data
-  #  @items = data.map! {|var| var.split}
+  #  data.each do |i|
+  #    @items << Array(i)
+  #  end
+  #  @items
   #end 
-
-  # Test 5
-  def make_mini_arrays data
-    data.each do |i|
-      @items << Array(i)
-    end
-    @items
-  end 
 
 
   # Test 6
   def remove_if_more_than_three_letters data # just gives last iteration back 
    data.each do |i|
       if i.length < 4
-        @items = @items.push i # redefining @items
+       @items.push i # redefining @items
       end
     end 
    @items

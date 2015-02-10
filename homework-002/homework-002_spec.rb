@@ -36,11 +36,11 @@ describe Kitchen do
   it "creates arrays out of each element" do
     expect(kitchen.make_mini_arrays(["stove", "windows"])).to eq [["stove"], ["windows"]]
   end
-#  # Test 5
-#  it "creates arrays out of each element" do
-#    expect(kitchen.make_mini_arrays(["the stove", "windows"])).to eq [["the stove"], ["windows"]]
-#  end
-#
+  # Test 5.1
+  it "creates arrays out of each element whith white space in it" do
+    expect(kitchen.make_mini_arrays(["the stove", "windows"])).to eq [["the stove"], ["windows"]]
+  end
+
 
   # Test 6
   it "removes any item with more than 3 letters in its name from the kitchen" do
