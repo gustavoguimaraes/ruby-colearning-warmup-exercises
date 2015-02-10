@@ -31,10 +31,19 @@ class Kitchen
     end 
   end  
   
+  ## Test 5
+  #def make_mini_arrays data
+  #  @items = data.map! {|var| var.split}
+  #end 
+
   # Test 5
   def make_mini_arrays data
-    @items = data.map! {|var| var.split}
+    data.each do |i|
+      @items << Array(i)
+    end
+    @items
   end 
+
 
   # Test 6
   def remove_if_more_than_three_letters data # just gives last iteration back 
@@ -55,5 +64,7 @@ class Kitchen
   def first_three data
     @items = data[0..2]
   end
-
 end
+#sink = ["stove", "windows"]
+#hello = Kitchen.new sink
+#puts hello.remove_if_more_than_three_leters
