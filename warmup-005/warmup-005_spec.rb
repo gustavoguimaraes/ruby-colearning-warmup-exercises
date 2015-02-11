@@ -50,6 +50,10 @@ describe "#roll_bucket" do
   end
 
   #write at least one other test here
+  it "return an array of hashes" do
+    expect(roll_bucket([20, 30, 123])).to match_array([{:sides=>20, :face=>6}, {:sides=>30, :face=>12}, {:sides=>123, :face=>13}])
+  end
+
 
 end
 
