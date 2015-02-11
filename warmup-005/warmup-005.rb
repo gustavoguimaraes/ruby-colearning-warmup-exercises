@@ -16,6 +16,9 @@ def on_the_table(rolled_dice)
   rolled_dice.each do |i| 
     expected_result << "On the table:\n Your #{i[:sides]}-sided die shows the value of #{i[:face]}\n"
   end
+  if rolled_dice.empty?
+    expected_result = "No dice in the bucket"
+  end
   expected_result
 end
 
