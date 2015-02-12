@@ -2,16 +2,19 @@ class DieSoon
   def initialize
     @expecte_results = ""
     @die_container = []
+    @die_input = ""
   end
 
   def add_die
    puts "create as many dice you want A die should have minimum 4 sides"
-   die_input = gets.chomp.to_i
-   if die_input < 4 
-     puts "your die should have at least 4 sides"
+   @die_input = gets.chomp.to_i
+   if @die_input < 4 && @die_input > 0
+     return  "your die should have at least 4 sides"
+   elsif @die_input == 0
+     return @die_input  
    else
-     @die_container << die_input
-     puts "Added a die with #{die_input} sides"
+     @die_container << @die_input
+     return "Added a die with #{@die_input} sides"
    end
   end
 
@@ -43,22 +46,13 @@ class DieSoon
     expected_result
   end
 end
-
-#result = []
-#data = []
-#begin 
-#  puts """reate as many dice you want
-#  A die should have minimum 4 sides
-#  Enter 0 to roll the dice
-#  How many sides?"""
-#  var = gets.chomp.to_i
-#  if var == 0
-#    data = roll_bucket result
-#    puts on_the_table data
-#  else
-#    result << var
-#    puts "Added a die with #{var} sides"
-#  end
+narkose = DieSoon.new
+begin 
+  puts narkose.add_die
+  if narkose.add_die == 0
+    narkose.shake_it
+  end
+end until @die_input == 23
 #end until var == 23
 #
 # In a loop, ask the user for the dice sides
