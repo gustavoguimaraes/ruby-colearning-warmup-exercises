@@ -15,9 +15,10 @@ class Spaetkauf
     @line = data
   end
   def take_number data
-    @line << "#{@line.length + 1 }. #{data}"
+    @line << data
+    "#{@line.index(data) + 1}. #{data}" # funktioniert nicht bei gleichen eintraegen, da .index nach namen indexiert
   end
   def now_serving
-    Array(@line.first)
+     "it is #{@line.shift}'s turn"
   end
 end
