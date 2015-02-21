@@ -41,3 +41,13 @@ class Hand
   end
 end
 
+class Bank
+  attr_accessor :wager
+  def initialize( data = nil )
+    @wager = data
+  end
+  def surrender
+    @wager = @wager / 2
+  end
+end
+
