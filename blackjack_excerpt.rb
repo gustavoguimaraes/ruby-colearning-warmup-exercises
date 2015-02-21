@@ -18,11 +18,11 @@ end
 begin
   puts @dealer.black
 condition = ""
-if @dealer.black == :unbusted && @dealer.count > @player.count || @dealer.black == :blackjack
+if @dealer.count <= 21 && @dealer.count > @player.count 
     condition = "Dealer wins!"
-  elsif @dealer.black == :unbusted && @dealer.count < @player.count
+  elsif @dealer.count < 21 && @dealer.count < @player.count
     @dealer.add_cards "down"
-  elsif @dealer.black == :busted
+  elsif @dealer.count > 21 
     condition = "Player wins!"
     puts "hello"
   end
