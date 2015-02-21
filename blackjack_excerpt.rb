@@ -17,6 +17,8 @@ end
 #dealer acts
 begin
   puts @dealer.black
+print @player.hand.map { |var| var.card_value }
+print @dealer.hand.map { |var| var.card_value }
 condition = ""
 if @dealer.count <= 21 && @dealer.count > @player.count 
     condition = "Dealer wins!"
@@ -24,13 +26,12 @@ if @dealer.count <= 21 && @dealer.count > @player.count
     @dealer.add_cards "down"
   elsif @dealer.count > 21 
     condition = "Player wins!"
-    puts "hello"
+  elsif @dealer.count == @player.count
+    condition = "It's a Tie!"
   end
-end until condition == "Dealer wins!" || condition == "Player wins!"
+end until condition == "Dealer wins!" || condition == "Player wins!" || condition == "It's a Tie!"
 puts condition
 
-print @player.hand.map { |var| var.card_value }
-print @dealer.hand.map { |var| var.card_value }
 
 
 
