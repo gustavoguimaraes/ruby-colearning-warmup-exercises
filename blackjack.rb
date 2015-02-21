@@ -26,9 +26,9 @@ class Hand
     count_values
   end
   def count_values
-    @count = nil
-    @count = @hand.map { |var| var.card_value }
-    @count = @count.inject{|sum,x| sum + x }
+    var = []
+    var = @hand.map { |var| var.card_value }
+    @count = var.inject{|sum,x| sum + x }
   end
   def black
     if @count == 21
