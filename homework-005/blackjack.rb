@@ -64,7 +64,10 @@ class Bank
     @wager = 0
   end
   def wins
-    @wager = @wager * 2
+    @deposit = @deposit + @wager
+  end
+  def loses
+    @deposit = @deposit - @wager
   end
 end
 

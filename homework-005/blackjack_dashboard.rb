@@ -5,26 +5,31 @@ begin
     condition = ""
     if @dealer.count <= 21 && @dealer.count > @player.count 
       condition = "Dealer wins!"
+      data = :menue5
+      @bank.loses
     elsif @dealer.count > 21  
       condition = "Player wins!"
+      data = :menue6
       @bank.wins
     elsif @dealer.count == @player.count
       condition = "It's a Tie!"
+      data = :menue7
     elsif @dealer.count < 17 && @dealer.count < @player.count
       @dealer.add_cards "down"
     end 
   end until condition == "Dealer wins!" || condition == "Player wins!" || condition == "It's a Tie!"
-puts condition
-puts "Your Cards: #{@player.cards_all}"
-puts "Dealers Cards: #{@dealer.cards_all}"
+  data
 end
 
 def prompt data
   puts `clear`
   hash = { menue: "Just place a Bet or End the Game with 666",
            menue2: "Press 1. to Hit  2. to Stand 3. to Surrender",
-           menue3: "YOU BUSTED, type again for another Turn",
-           menue4: "YOU SURRENDERED and Lost Half Your Wager"
+           menue3: "YOU BUSTED\n Type again for another Turn",
+           menue4: "YOU SURRENDERED and Lost Half Your Wager\n Type again for another Turn",
+           menue5: "DEALER WINS\n Type again for another Turn",
+           menue6: "YOU WIN\n Type again for another Turn",
+           menue7: "IT'S A TIE\n Type again for another Turn"
   } 
   puts "####    B L A C K J A C K    ####"
   puts
@@ -39,6 +44,7 @@ end
 def reset
   @dealer.hand = []
   @player.hand = []
+  @bank.wager = nil
 end
 
 
@@ -89,7 +95,7 @@ end
         data = :menue3
       end
       when 2 #stand
-      calculate_winner
+      data = calculate_winner
       when 3 #surrender
       @bank.surrender
       @bank.deposit = @bank.deposit - @bank.surrender
@@ -97,7 +103,7 @@ end
     else
       puts "invalid entry"
     end
-  end while choice == 1 || choice == 3
+  end while choice == 1 || choice == 3 || choice == 2
 end 
 
 
