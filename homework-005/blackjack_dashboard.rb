@@ -7,7 +7,7 @@ begin
       condition = "Dealer wins!"
       data = :menue5
       @bank.loses
-    elsif @dealer.count > 21  
+    elsif @dealer.count > 21 || @player.count == 21 
       condition = "Player wins!"
       data = :menue6
       @bank.wins
@@ -23,13 +23,14 @@ end
 
 def prompt data
   puts `clear`
-  hash = { menue: "Just place a Bet or End the Game with 666",
+  hash = { menue: "Just place a Bet or End the Game with end",
            menue2: "Press 1. to Hit  2. to Stand 3. to Surrender",
            menue3: "YOU BUSTED\n Type again for another Turn",
            menue4: "YOU SURRENDERED and Lost Half Your Wager\n Type again for another Turn",
            menue5: "DEALER WINS\n Type again for another Turn",
            menue6: "YOU WIN\n Type again for another Turn",
-           menue7: "IT'S A TIE\n Type again for another Turn"
+           menue7: "IT'S A TIE\n Type again for another Turn",
+           menue8: "INVALID ENTRY\nPress 1. to Hit  2. to Stand 3. to Surrender"
   } 
   puts "####    B L A C K J A C K    ####"
   puts
@@ -59,11 +60,11 @@ loop do
   prompt :menue
   puts
   print "\nPlease Enter Here ----->  "
-  money = gets.chomp.to_i
-  @bank.wager = money
-  @bank.deposit = @bank.deposit - money 
+  money = gets.chomp
+  @bank.wager = money.to_i
+  @bank.deposit = @bank.deposit - money.to_i
 
-if money == 666 
+if money == "end" 
   break
 end
   # Initializing New Game
@@ -86,8 +87,8 @@ end
     end 
     # player acts
     print "\nPlease Enter Here ----->  "
-    choice = gets.chomp.to_i
-    case choice
+    choice = gets.chomp
+    case choice.to_i
       when 1 # hit
       @player.add_cards "up" 
       if @player.black == :busted
@@ -101,9 +102,9 @@ end
       @bank.deposit = @bank.deposit - @bank.surrender
       data = :menue4
     else
-      puts "invalid entry"
+      data = :menue8
     end
-  end while choice == 1 || choice == 3 || choice == 2
+  end until choice == "again"
 end 
 
 
