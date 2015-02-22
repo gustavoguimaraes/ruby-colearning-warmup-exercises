@@ -54,8 +54,11 @@ class Bank
     @wager = data
     @deposit = marta
   end
+#  def deposit
+#    @deposit
+#  end
   def surrender
-    @wager = @wager / 2
+     @wager / 2
   end
   def busted
     @wager = 0
