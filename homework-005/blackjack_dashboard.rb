@@ -17,7 +17,7 @@ begin
     elsif @dealer.count < 17 && @dealer.count < @player.count
       @dealer.add_cards "down"
     end 
-  end until condition == "Dealer wins!" || condition == "Player wins!" || condition == "It's a Tie!"
+  end until data == :menue5 || data == :menue6 || data == :menue7
   data
 end
 
