@@ -39,18 +39,29 @@ class Hand
       @bj_state = :unbusted
     end
   end
+  def cards_all
+      @hand.map { |var| var.card_value }.join(" ")
+  end
+  def cards
+      @hand.map { |var| var.card_value if var.card_face == "up" }.join(" ")
+  end
 end
 
 class Bank
   attr_accessor :wager
-  def initialize( data = nil )
+  attr_accessor :deposit
+  def initialize( data = nil, marta = 100 )
     @wager = data
+    @deposit = marta
   end
   def surrender
     @wager = @wager / 2
   end
   def busted
     @wager = 0
+  end
+  def wins
+    @wager = @wager * 2
   end
 end
 

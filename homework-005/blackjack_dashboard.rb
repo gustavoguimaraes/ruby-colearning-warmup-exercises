@@ -1,15 +1,5 @@
 require_relative 'blackjack.rb'
 
-def player_shows_cards
-  "Players Cards: #{@player.hand.map { |var| var.card_value }.join(" ")}"
-end
-# dealer show cards (one card up one down)
-def dealer_shows_cards
-  "Dealers Cards: #{@dealer.hand.map { |var| var.card_value if var.card_face == "up" }.join(" ")}"
-end
-def dealer_reveal_cards
-  @dealer.hand.map { |var| var.card_value }
-end
 def calculate_winner
 begin
     condition = ""
@@ -17,6 +7,7 @@ begin
       condition = "Dealer wins!"
     elsif @dealer.count > 21  
       condition = "Player wins!"
+      @bank.wins
     elsif @dealer.count == @player.count
       condition = "It's a Tie!"
     elsif @dealer.count < 17 && @dealer.count < @player.count
@@ -24,8 +15,8 @@ begin
     end 
   end until condition == "Dealer wins!" || condition == "Player wins!" || condition == "It's a Tie!"
 puts condition
-print dealer_reveal_cards
-print player_shows_cards 
+puts "Your Cards: #{@player.cards_all}"
+puts "Dealers Cards: #{@dealer.cards_all}"
 end
 # Initialize Classes
 @dealer = Hand.new
@@ -34,16 +25,20 @@ end
 
 
 loop do
+puts `clear`
   # place bet
-  puts "YOU WANNE PLAY BLACKJACK ???\n"
-  puts "just place a bet (1-100$) or End the Game with 666"
-  print "your wager: "
+  puts "####    B L A C K J A C K    ####\n"
+  puts
+  puts "Just place a Bet or End the Game with 666"
+  puts "Your Deposit : #{@bank.deposit}"
+  print "Your Wager: "
   money = gets.chomp.to_i
   @bank.wager = money
 
 if money == 666 
   break
 end
+  # Initializing New Game
   # player gets cards
   2.times { @player.add_cards "up" } # exception, wenn wei 11 dann ist eine eine eins
 
@@ -52,32 +47,33 @@ end
   @dealer.add_cards "down"   # exception, wenn zwei 11 dann ist eine eine eins
 
   begin
-    puts player_shows_cards
-    puts dealer_shows_cards
+    puts "Your Cards: #{@player.cards_all}"
+    puts "Dealers Cards: #{@dealer.cards}"
 
     # dealer calculate cards
     if @dealer.black == :blackjack
-      puts "Dealer has Blackjack you lost the game"
+      puts "Dealer has Blackjack You lost the game"
     else
       # insurance when face up card = 11
     end 
     # player acts
-    puts "you wanne 1. hit or 2. stand 3. surrender"
+    puts "You wanne 1. hit or 2. stand 3. surrender"
     choice = gets.chomp.to_i
-    if choice == 1 # hit
+    case choice
+      when 1 # hit
       @player.add_cards "up" 
       if @player.black == :busted
         @bank.busted
         puts "YOU BUSTED"
-        puts "Your wager decimated to #{@bank.wager}"
+        puts "Your Wager decimated to #{@bank.wager}"
         break
       end
-    elsif choice == 2 #stand
+      when 2 #stand
       calculate_winner
-    elsif choice == 3 #surrender
+      when 3 #surrender
       @bank.surrender
-      puts "You surendered"
-      puts "Your wager decimated to #{@bank.wager}"
+      puts "YOU SURRENDERED"
+      puts "Your Wager decimated to #{@bank.wager}"
     else
       puts "invalid entry"
     end
