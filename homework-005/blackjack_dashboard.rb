@@ -15,12 +15,12 @@ begin
     condition = ""
     if @dealer.count <= 21 && @dealer.count > @player.count 
       condition = "Dealer wins!"
-    elsif @dealer.count < 21 && @dealer.count < @player.count
-      @dealer.add_cards "down"
     elsif @dealer.count > 21  
       condition = "Player wins!"
     elsif @dealer.count == @player.count
       condition = "It's a Tie!"
+    elsif @dealer.count < 17 && @dealer.count < @player.count
+      @dealer.add_cards "down"
     end 
   end until condition == "Dealer wins!" || condition == "Player wins!" || condition == "It's a Tie!"
 puts condition
@@ -33,7 +33,7 @@ end
 @bank = Bank.new
 
 
-begin
+loop do
   # place bet
   puts "YOU WANNE PLAY BLACKJACK ???\n"
   puts "just place a bet (1-100$) or End the Game with 666"
@@ -41,7 +41,9 @@ begin
   money = gets.chomp.to_i
   @bank.wager = money
 
-break if money == 666 # klappt nicht
+if money == 666 
+  break
+end
   # player gets cards
   2.times { @player.add_cards "up" } # exception, wenn wei 11 dann ist eine eine eins
 
@@ -65,11 +67,14 @@ break if money == 666 # klappt nicht
     if choice == 1 # hit
       @player.add_cards "up" 
       if @player.black == :busted
-        puts "you busted, bastard"
+        @bank.busted
+        puts "YOU BUSTED"
+        puts "Your wager decimated to #{@bank.wager}"
+        break
       end
     elsif choice == 2 #stand
       calculate_winner
-    elsif choice == 3
+    elsif choice == 3 #surrender
       @bank.surrender
       puts "You surendered"
       puts "Your wager decimated to #{@bank.wager}"

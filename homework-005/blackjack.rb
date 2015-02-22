@@ -49,5 +49,8 @@ class Bank
   def surrender
     @wager = @wager / 2
   end
+  def busted
+    @wager = 0
+  end
 end
 
