@@ -11,12 +11,13 @@
 # Write a test and then write the class.
 class Spaetkauf
   attr_accessor :line
+  attr_accessor :whatever
   def initialize(data = [])
     @line = data
   end
   def take_number data
     @line << data
-    "#{@line.index(data) + 1}. #{data}" # funktioniert nicht bei gleichen eintraegen, da .index nach namen indexiert
+    @line.map.with_index(1) { |index, data| "#{data}. #{index}" }
   end
   def now_serving
      "it is #{@line.shift}'s turn"
