@@ -17,7 +17,8 @@ class Spaetkauf
   end
   def take_number data
     @line << data
-    @line.map.with_index(1) { |index, data| "#{data}. #{index}" }
+#    @line.map.with_index(1) { |index, data| "#{data}. #{index}" }
+    @line.map.with_index { |data, index| "#{index + 1}. #{data}"}
   end
   def now_serving
      "it is #{@line.shift}'s turn"
