@@ -21,7 +21,7 @@ begin
   data
 end
 
-def prompt data
+def prompt(data, data2 = :hidden)
   puts `clear`
   hash = { menue: "Just place a Bet or End the Game with end",
            menue2: "Press 1. to Hit  2. to Stand 3. to Surrender",
@@ -32,6 +32,9 @@ def prompt data
            menue7: "IT'S A TIE\n Type again for another Turn",
            menue8: "INVALID ENTRY\nPress 1. to Hit  2. to Stand 3. to Surrender"
   } 
+  hash2 = { hidden: "Dealers Cards: #{@dealer.cards}",
+            revealed: "Dealers Cards: #{@dealer.cards_all}"
+  } 
   puts "####    B L A C K J A C K    ####"
   puts
   puts hash[data]
@@ -39,7 +42,7 @@ def prompt data
   puts "Your Deposit : #{@bank.deposit}"
   puts "Your Wager: #{@bank.wager}"
   puts "Your Cards: #{@player.cards_all}"
-  puts "Dealers Cards: #{@dealer.cards}"
+  puts hash2[data2]
 end
   
 def reset
@@ -76,8 +79,9 @@ end
   @dealer.add_cards "down"   # exception, wenn zwei 11 dann ist eine eine eins
 
     data = :menue2
+    data2 = :hidden
   begin
-    prompt data 
+    prompt(data, data2)
 
     # dealer calculate cards
     if @dealer.black == :blackjack
@@ -96,6 +100,7 @@ end
         data = :menue3
       end
       when 2 #stand
+      data2 = :revealed
       data = calculate_winner
       when 3 #surrender
       @bank.surrender
