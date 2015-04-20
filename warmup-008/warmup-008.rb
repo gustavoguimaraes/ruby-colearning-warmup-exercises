@@ -12,25 +12,57 @@
 # "Bu BA mu er ro MO BA fu me go BA MO ge MO"
 
 
+
 def words_highlighter(text, num_repeated)
-  string = ""
-  hash = Hash.new(0)
-  array = text.split
-  array.each do |words|
-    hash[words] += 1
+  @array2 = []
+  @array = []
+  @cond = ""
+  count_hash(text)
+  select_array(num_repeated)
+  compose_string
+end
+  
+
+private
+
+def count_hash(text)
+  @hash = Hash.new(0)
+  @array = text.split
+  @array.each do |words|
+    @hash[words] += 1
   end
-  hash.each do |key, value|
-    if value >= 3 #num_repeated
-      string << "#{key.upcase} "
-    else
-      string << "#{key} "
-    end
-  end
-  string
+  @hash
 end
 
-#
-#text = "lorem ipsum dolor sit amet, consectetur adipiscing elit. sed id mi id nisl sagittis varius non id leo. nunc ornare orci diam, vitae eleifend odio malesuada vel. curabitur mollis turpis eu nibh tempor, at aliquet sem iaculis. class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. proin et quam id dui vulputate dapibus ut et mauris. duis tincidunt quam a semper scelerisque. cras turpis risus, scelerisque vitae auctor nec, placerat quis dui. fusce neque diam, porttitor ac ultricies eget, laoreet ac arcu. sed dolor urna, lacinia nec dolor vel, pharetra lobortis sem. morbi imperdiet sodales eros id convallis. praesent facilisis bibendum erat in aliquam. aenean ut varius orci, in commodo justo. mauris tempus nunc quis ipsum aliquet volutpat at sed dolor. nam vitae ligula mauris. duis tempor urna a nisl efficitur faucibus."
+def select_array(num_repeated)
+  @hash.each do |key, value|
+    if value >= num_repeated
+      @array2 << key
+    end
+  end
+  @array2
+end
+
+def compose_string
+  out = @array.map do |x| 
+    @array2.each do |y|
+      if x == y
+        @cond = true
+        break
+      else
+        @cond = false
+      end
+    end
+    if @cond == true
+      x.upcase
+    else
+      x
+    end
+  end
+  out.join(" ")
+end
 
 
-# words_highlighter(text, 3)
+
+
+
